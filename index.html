@@ -19,7 +19,7 @@
         body {
             margin: 0;
             padding: 0;
-            font-family: Amasis MT Pro Black, Amasis MT Pro Black;
+            font-family: Arial, sans-serif;
             background-color: #f3f3f3;
             color: #333;
         }
@@ -38,7 +38,7 @@
         .content {
             text-align: center;
             color: #fff;
-            animation: floatIn 2.5s ease-out;
+            animation: floatIn 1.5s ease-out;
         }
 
         .content h1 {
@@ -66,15 +66,66 @@
         .content a:hover {
             background-color: #005bb5;
         }
+
+        .sections {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 50px 0;
+        }
+
+        .section {
+            width: 30%;
+            margin: 10px;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+        }
     </style>
 </head>
 <body>
     <div class="background">
         <div class="content">
-            <h1>Bienvenido al Club de Ajedrez "Para Todos Perú"</h1>
+            <h1>Bienvenido al Club de Ajedrez</h1>
             <p>Donde cada movimiento cuenta</p>
             <a href="#">Únete ahora</a>
         </div>
     </div>
+
+    <div class="sections">
+        <div class="section"><h2>Historia del Ajedrez</h2><p>Conoce el origen y evolución de este gran juego.</p></div>
+        <div class="section"><h2>Reglas Básicas</h2><p>Aprende los fundamentos y reglas del ajedrez.</p></div>
+        <div class="section"><h2>Estrategias</h2><p>Descubre tácticas y estrategias para mejorar tu juego.</p></div>
+        <div class="section"><h2>Torneos</h2><p>Infórmate sobre los torneos locales e internacionales.</p></div>
+        <div class="section"><h2>Grandes Maestros</h2><p>Explora las biografías de los mejores ajedrecistas del mundo.</p></div>
+        <div class="section"><h2>Contacto</h2><p>Únete a nuestra comunidad y participa en eventos.</p></div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const sections = document.querySelectorAll(".section");
+            
+            function revealSections() {
+                sections.forEach((section, index) => {
+                    const sectionTop = section.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (sectionTop < windowHeight - 50) {
+                        section.style.opacity = "1";
+                        section.style.transform = "translateY(0)";
+                        section.style.transitionDelay = `${index * 0.2}s`;
+                    }
+                });
+            }
+            
+            window.addEventListener("scroll", revealSections);
+            revealSections(); // Llamada inicial para mostrar los elementos si ya están en la vista
+        });
+    </script>
 </body>
 </html>
